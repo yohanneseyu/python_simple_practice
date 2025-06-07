@@ -1,3 +1,6 @@
+students_info = {}
+
+
 def option():
     print('THESE ARE THE OPTIONS, \nNOW CHOOSE A VALID OPTION (1 OR 2 ...)')
     print('1.ADD')
@@ -9,7 +12,35 @@ def option():
 
 
 def add():
-    print("ADD code comming soon ......")
+    try:
+        print(" ==============Here Enter All Student information ==============\n")
+        student_id = input("Enter your ID Number ")
+        student_name = input("Enter your First name :- ")
+        if student_id in students_info:
+            print(f"{student_id}: student already exists on the system!!! \n")
+
+        student_age = input("Enter your Age :- ")
+        student_grade = input("Enter your Grade :- ")
+
+        if not student_age.isdigit():
+            print(f"{student_age}: you have entered the wrong format !")
+
+        students_info[student_id] = {
+            "name": student_name,
+            "age": student_age,
+            "grade": student_grade
+        }
+
+        print(f"\nStudent ID:- {student_id} Successfully Added ")
+
+    except ValueError as ve:
+        print(f"Value Error: {ve} please check your inputs")
+    except KeyboardInterrupt:
+        print(f"\nInterrupted by the user ")
+        exit()
+
+    except Exception as e:
+        print(f"Something went wrong please try again !!!")
 
 
 def view():
