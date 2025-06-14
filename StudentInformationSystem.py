@@ -2,7 +2,7 @@ students_info = {}
 
 
 def option():
-    print('THESE ARE THE OPTIONS, \nNOW CHOOSE A VALID OPTION (1 OR 2 ...)')
+    print('\n THESE ARE THE OPTIONS, \nNOW CHOOSE A VALID OPTION (1 OR 2 ...)')
     print('1.ADD')
     print('2.VIEW')
     print('3.SEARCH')
@@ -16,11 +16,20 @@ def viewoption():
     print("1.For Individual Student")
     print("2.For All Student Information")
     return
+
+
 def deloption():
     print(f"\n ***********Hello  What do you want to do ***********")
     print(f"\n 1.Delete an Individual Student ")
     print(f"\n 2.Delete All Student Information")
     return
+
+
+def serachoption():
+    print(f"\n ************** Choose search by name,by age or by grade **************")
+    print(f"1.Name ")
+    print(f"2.Age ")
+    print(f"3.Grade ")
 
 
 def add():
@@ -82,10 +91,44 @@ def view():
         print(f"Invalid Choice. Please use 1 or 2")
 
 
-
-
 def search():
-    print("SERACH code comming soon ......")
+    serachoption()
+    searchchoice = input("\n Enter your choice :- ").strip()
+    if searchchoice == "1":
+        serachname = input("\n Enter the student name :- ").strip().lower()
+        searchfound = False
+        for studentsserachid, infosearch in students_info.items():
+            if serachname in infosearch["name"].lower():
+                print(f"\n Found Student ID : {studentsserachid}")
+                for key, value in infosearch.items():
+                    print(f"{key}: {value}")
+                    searchfound = True
+        if not searchfound:
+            print(f"student name doesnt exists in the database !")
+    elif searchchoice == "2":
+        searchage = input("\n Enter Student's age (should be number!) :- ").strip()
+        searchfound = False
+        for studentsearchage, infoage in students_info.items():
+            if searchage in infoage["age"]:
+                print(f"\n Student has been Found ID number :- {studentsearchage}")
+                for key, value in infoage.items():
+                    print(f"{key}: {value}")
+                    searchfound = True
+        if not searchfound:
+            print(f"student age number doesnt exists in the database !")
+    elif searchchoice == "3":
+        searchgrade = input("\n Enter Students Grade :- ")
+        searchfound = False
+        for studentgrade, infograde in students_info.items():
+            if searchgrade in infograde["grade"].upper():
+                print(f"\n Student has been Found ID number :- {studentgrade}")
+                for key, value in infograde.items():
+                    print(f"{key}: {value}")
+                    searchfound = True
+        if not searchfound:
+            print(f"student Grade doesnt exists in the database !")
+    else:
+        print(f"\n please enter a valid option 1,2 or 3")
 
 
 def edit():
@@ -115,10 +158,6 @@ def delete():
             print(f"\n Enter a Valid Option. please use 1 or 2. ")
     except Exception as e:
         print(f"an error occurred: {e}")
-
-
-
-
 
 
 def menu():
